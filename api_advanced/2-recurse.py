@@ -5,6 +5,7 @@ Recursively fetches titles of hot posts from a given subreddit.
 
 import requests
 
+
 def recurse(subreddit, hot_list=[], after=""):
     """
     Recursively collects titles of hot posts from a subreddit.
@@ -17,8 +18,18 @@ def recurse(subreddit, hot_list=[], after=""):
     Returns:
     list: A list of titles, or None if the subreddit is invalid.
     """
-    headers = {'User-Agent': 'APIAdvanced/0.1 (Educational Purpose; Student at Holberton School)'}
-    url = f"https://www.reddit.com/r/{subreddit}/hot.json?limit=100&after={after}"
+    headers = {
+    'User-Agent': (
+        'APIAdvanced/0.1 '
+        '(Educational Purpose; Student at Holberton School)'
+    )
+}
+
+    url = (
+    f"https://www.reddit.com/r/{subreddit}/hot.json"
+    f"?limit=100&after={after}"
+)
+
     response = requests.get(url, headers=headers, allow_redirects=False)
 
     if response.status_code != 200:
@@ -41,3 +52,4 @@ def recurse(subreddit, hot_list=[], after=""):
         return recurse(subreddit, hot_list, after)
     except ValueError:
         return None
+    
