@@ -9,7 +9,7 @@ import requests
 def recurse(subreddit, hot_list=[], after=""):
     """
     Recursively collects titles of hot posts from a subreddit.
-    
+
     Args:
     subreddit (str): The subreddit to query.
     hot_list (list): Accumulator for hot post titles, passed recursively.
@@ -22,13 +22,13 @@ def recurse(subreddit, hot_list=[], after=""):
     'User-Agent': (
         'APIAdvanced/0.1 '
         '(Educational Purpose; Student at Holberton School)'
-    )
-}
+        )
+    }
 
     url = (
     f"https://www.reddit.com/r/{subreddit}/hot.json"
     f"?limit=100&after={after}"
-)
+    )
 
     response = requests.get(url, headers=headers, allow_redirects=False)
 
@@ -52,4 +52,3 @@ def recurse(subreddit, hot_list=[], after=""):
         return recurse(subreddit, hot_list, after)
     except ValueError:
         return None
-    
