@@ -18,15 +18,11 @@ def number_of_subscribers(subreddit):
     Returns:
     int: The number of subscribers if the subreddit exists, otherwise 0.
     '''
-  url = f"https://www.reddit.com/r/{subreddit}/about.json"
+  url = f'https://www.reddit.com/r/{subreddit}/about.json'
   headers = {'User-Agent': 'APIAdvanced/0.1 (Educational Purpose; Student at Holberton)'}
 
-  response  = requests.get(url, headers=headers, allow_redirects=False)
-  if response.status_code == 200:
-    body = response.json()
-    if 'data' in body and 'subscribers' in body['data']:
-      return body['data']['subscribers']
-    else:
-      return 0
+  r  = requests.get(url, headers=headers, allow_redirects=False)
+  if r.status_code == 200:
+    return r.json()['data']['subscribers']
   else:
     return 0
