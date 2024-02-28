@@ -19,8 +19,9 @@ def number_of_subscribers(subreddit):
     int: The number of subscribers if the subreddit exists, otherwise 0.
     '''
   url = f"https://www.reddit.com/r/{subreddit}/about.json"
+  headers = {'User-Agent': 'APIAdvanced/0.1 (Educational Purpose; Student at Holberton)'}
 
-  response  = requests.get(url)
+  response  = requests.get(url, headers=headers)
   if response.status_code == 200:
     body = response.json()
 
