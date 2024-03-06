@@ -27,16 +27,17 @@ def count_words(subreddit, word_list, after='', word_count=None):
         'User-Agent': 'python:edu.holberton.apiadvanced:v1.0.0 (by /u/MintyGreen15)'
     }
     url = (
-        f"https://www.reddit.com/r/{subreddit}/hot.json"
-        f"?limit=100&after={after}"
+        "https://www.reddit.com/r/{}/hot.json?limit=100&after={}"
+        .format(subreddit, after)
     )
     response = requests.get(url, headers=headers)
 
     # Base case: if the subreddit is invalid or we've reached the end
     if response.status_code != 200 or after is None:
-        if after is None:  # Only print the results after all pages have been processed
+        if after is None:
             if word_count:
-                sorted_words = sorted(word_count.items(), key=lambda x: (-x[1], x[0]))
+                sorted_words = sorted(
+                    word_count.items(), key=lambda x: (-x[1], x[0]))
                 for word, count in sorted_words:
                     print(f"{word}: {count}")
             return
