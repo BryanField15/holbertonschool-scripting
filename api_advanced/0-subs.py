@@ -19,7 +19,11 @@ def number_of_subscribers(subreddit):
     int: The number of subscribers if the subreddit exists, otherwise 0.
     '''
   url = f'https://www.reddit.com/r/{subreddit}/about.json'
-  headers = {'User-Agent': 'APIAdvanced/0.1 (Educational Purpose; Student at Holberton)'}
+  headers = {
+    'User-Agent': ('APIAdvanced/0.1 (Educational Purpose; '
+                   'Student at Holberton; Contact: 6367@holbertonstudents.com)')
+}
+
 
   s = requests.Session()
 
