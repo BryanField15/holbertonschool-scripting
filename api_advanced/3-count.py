@@ -1,13 +1,14 @@
 #!/usr/bin/python3
 """
-This module queries the Reddit API, parses the title of all hot articles, 
-and prints a sorted count of given keywords (case-insensitive, 
-delimited by spaces
+This module queries the Reddit API, parses the title of all hot articles,
+and prints a sorted count of given keywords (case-insensitive,
+delimited by spaces).
 """
 
 import requests
 
-def count_words(subreddit, word_list, after='', word_count={}):
+
+def count_words(subreddit, word_list, after='', word_count=None):
     """
     Recursively counts and prints the occurrences of keywords in the titles
     of hot articles for a given subreddit.
@@ -18,13 +19,16 @@ def count_words(subreddit, word_list, after='', word_count={}):
     after (str, optional): The pagination parameter for Reddit's API.
     word_count (dict, optional): Accumulates the count of each keyword.
     """
+    if word_count is None:
+        word_count = {}
+
     # Prepare the request
     headers = {
-    'User-Agent': 'python:edu.holberton.apiadvanced:v1.0.0 (by /u/MintyGreen15)'
-    } 
+        'User-Agent': 'python:edu.holberton.apiadvanced:v1.0.0 (by /u/MintyGreen15)'
+    }
     url = (
-    f"https://www.reddit.com/r/{subreddit}/hot.json"
-    f"?limit=100&after={after}"
+        f"https://www.reddit.com/r/{subreddit}/hot.json"
+        f"?limit=100&after={after}"
     )
     response = requests.get(url, headers=headers)
 
