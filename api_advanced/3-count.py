@@ -24,7 +24,8 @@ def count_words(subreddit, word_list, after='', word_count=None):
 
     # Prepare the request
     headers = {
-        'User-Agent': 'python:edu.holberton.apiadvanced:v1.0.0 (by /u/MintyGreen15)'
+        'User-Agent': 'python:edu.holberton.apiadvanced:v1.0.0'
+        '(by /u/MintyGreen15)'
     }
     url = (
         "https://www.reddit.com/r/{}/hot.json?limit=100&after={}"
