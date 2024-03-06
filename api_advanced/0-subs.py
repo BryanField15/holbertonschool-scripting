@@ -20,9 +20,7 @@ def number_of_subscribers(subreddit):
     '''
   url = f'https://www.reddit.com/r/{subreddit}/about.json'
   headers = {
-    'User-Agent': 'APIAdvanced/0.1 (Educational Purpose) '
-    'Contact: 6367@holbertonstudents.com'
-    '(by /u/MintyGreen15)'
+    'User-Agent': 'python:edu.holberton.apiadvanced:v1.0.0 (by /u/MintyGreen15)'
 }
   s = requests.Session()
 
